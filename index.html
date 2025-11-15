@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wombie Wonder Box – małe zestawy do wielkiej ciekawości</title>
+
+  <style>
+    :root {
+      --bg: #f6f4f0;
+      --blue: #bfd8e8;
+      --dark: #2f2b28;
+      --card-bg: #f8f3ea;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      line-height: 1.65;
+      font-size: 1.05rem;
+      scroll-behavior: smooth;
+    }
+
+    main { overflow-x: hidden; }
+    section { padding: 4rem 1.5rem; opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
+    section.visible { opacity: 1; transform: translateY(0); }
+
+    .container { width: min(1140px, 100%); margin: 0 auto; }
+
+
+    /* TYPOGRAFIA – ujednolicona */
+
+    h1 { font-size: clamp(2.4rem, 6vw, 3.4rem); font-weight: 700; }
+    h2 { font-size: 2rem; font-weight: 700; }
+    h3 { font-size: 1.4rem; font-weight: 600; }
+
+    p, li, .muted {
+      font-size: 1.1rem;
+      line-height: 1.65;
+    }
+
+
+    /* HERO */
+
+    .hero {
+      background: linear-gradient(180deg, #faf9f8 0%, #f3f0eb 100%);
+      text-align: center;
+      padding: 4rem 1rem 5rem;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    .hero img {
+      width: clamp(320px, 45vw, 480px);
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+    }
+
+    .cta {
+      background: var(--blue);
+      color: var(--dark);
+      padding: .9rem 1.8rem;
+      border-radius: .9rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background .25s;
+      display: inline-block;
+      margin-top: 1.2rem;
+      cursor: pointer;
+    }
+    .cta:hover { background: #aac7da; }
+
+
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .section-sub {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 2rem;
+      font-size: 1.1rem;
+      opacity: .85;
+    }
+
+
+    /* CO TO JEST */
+    .features {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      max-width: 680px;
+      margin: 2rem auto 0;
+      font-size: 1.05rem;
+    }
+
+.feature {
+  background: #fff;
+  border-radius: .9rem;
+  padding: 1.6rem 1.4rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+  display: flex;
+  flex-direction: column;      /* NOWOŚĆ – pionowy layout */
+  align-items: center;         /* ikona + tekst wyśrodkowane */
+  text-align: center;          /* środkowanie tekstu */
+  gap: .8rem;
+}
+
+.feature span {
+  font-size: 2rem;             /* większa ikona, lepiej wygląda na środku */
+  display: block;
+}
+
+.feature div {
+  max-width: 480px;            /* żeby tekst nie robił się za szeroki */
+}
+
+    .feature strong { display: block; font-weight: 600; margin-bottom: .2rem; }
+
+
+    /* JAK TO DZIAŁA */
+    #jak-to-dziala { padding-top: 3rem; }
+
+    .columns-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 1rem;
+      padding: 1.8rem 1.2rem;
+      border: 1px solid rgba(0,0,0,0.03);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.04);
+      text-align: center;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 28px rgba(0,0,0,0.06);
+    }
+
+
+    /* PRODUKTY */
+    #produkty { background: var(--card-bg); }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+
+    .product {
+      background: #fff;
+      border-radius: 1.2rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      transition: transform .25s ease, box-shadow .25s ease;
+      padding-bottom: 2rem;
+    }
+
+    .product:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.06);
+    }
+
+    .product img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      background: #f1efec;
+      padding: 2rem;
+      max-height: 320px;
+    }
+
+    /* NOWE: większe odstępy – wariant B */
+    .product-content {
+      padding: 2rem 2rem 2.4rem;
+    }
+    .product-content p {
+      margin-bottom: 1.8rem;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+
+    /* NASZ CEL – poprawione */
+    .about {
+      background: linear-gradient(180deg, #f5f3ef 0%, #f0ede8 100%);
+      padding: 3rem 1.5rem;
+      text-align: center;
+    }
+
+    .about-content {
+      max-width: 860px;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 1.15rem;
+      line-height: 1.75;
+    }
+    .about-content h3 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+
+    /* CTA END */
+    section:last-of-type {
+      text-align: center;
+      padding: 3rem 1.5rem 3.6rem;
+    }
+
+
+    /* STOPKA */
+    footer {
+      background: #fff;
+      color: var(--dark);
+      padding: 3rem 1.5rem;
+      text-align: center;
+      font-size: .9rem;
+      border-top: 1px solid rgba(0,0,0,0.05);
+    }
+    footer strong {
+      display: block;
+      margin-bottom: .4rem;
+    }
+
+
+    /* MODAL */
+    #modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      backdrop-filter: blur(3px);
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+
+    #modal {
+      background: #fff;
+      padding: 2rem 2rem 2.6rem;
+      border-radius: 1rem;
+      max-width: 420px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    #modal input {
+      width: 100%;
+      padding: .8rem 1rem;
+      margin: 1rem 0;
+      border-radius: .7rem;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    #closeModal {
+      margin-top: .6rem;
+      cursor: pointer;
+      opacity: .6;
+      font-size: .9rem;
+    }
+
+
+    /* SUCCESS MESSAGE */
+    #success-message {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #2ecc71;
+      color: #fff;
+      padding: 1rem 1.4rem;
+      border-radius: .8rem;
+      font-weight: 600;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      z-index: 9999;
+    }
+
+
+    /* HIDDEN ADMIN PANEL */
+    #hidden-panel {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: #333;
+      color: #fff;
+      padding: 1rem 1.2rem;
+      border-radius: .7rem;
+      font-size: .85rem;
+      z-index: 9999;
+      max-width: 320px;
+      max-height: 260px;
+      overflow: auto;
+    }
+    #hidden-panel h4 {
+      margin: 0 0 .4rem;
+      font-size: .9rem;
+      font-weight: 600;
+    }
+    #hidden-panel ul {
+      margin: 0;
+      padding-left: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <img src="logo2.png" alt="Wombie Wonder Box logo">
+      <h1>Małe zestawy do wielkiej ciekawości</h1>
+      <p>Buduj, odkrywaj i ucz się razem z dzieckiem dzięki zestawom DIY. Budowanie umiejętności przez działanie i wspólną zabawę.</p>
+      <a href="#produkty" class="cta">Zobacz zestawy</a>
+    </section>
+
+
+    <!-- CO TO JEST -->
+    <section>
+      <h2 class="section-title">Co to jest Wombie Wonder Box?</h2>
+      <p class="section-sub">
+        Edukacyjne zestawy do samodzielnego składania, które pokazują dzieciom,
+        <strong>jak działa świat</strong> – prosto, zrozumiale i własnymi rękami.
+      </p>
+
+      <div class="features">
+        <div class="feature"><span>📦</span><div><strong>Kilkanaście elementów</strong> prostych w montażu – składanie bez kleju</div></div>
+        <div class="feature"><span>📖</span><div><strong>Książeczka tematyczna</strong> z ciekawostkami i prostymi wyjaśnieniami zasad działania</div></div>
+        <div class="feature"><span>🛠️</span><div><strong>Instrukcja krok po kroku</strong> z obrazkami, dzięki której każdy poradzi sobie ze złożeniem.</div></div>
+      </div>
+
+      <p class="section-sub" style="margin-top:2rem;">
+        <strong>Seria DOM</strong> – nasze aktualne zestawy inspirowane są codziennymi przedmiotami.
+        Chcemy, żeby dzieci odkrywały, jak działają rzeczy, które widzą na co dzień – jak zamek w skarbonce 🐷
+        czy film w starym „telewizorze” 🎞️.
+      </p>
+    </section>
+
+
+    <!-- JAK TO DZIAŁA -->
+    <section id="jak-to-dziala">
+      <h2 class="section-title">Jak to działa</h2>
+
+      <div class="columns-3 container">
+        <div class="card">
+          <h3>Dotyk i doświadczenie</h3>
+          <p class="muted">Dziecko samo buduje i widzi rezultat – dzięki temu naprawdę rozumie, jak coś działa.</p>
+        </div>
+
+        <div class="card">
+          <h3>Prosta nauka</h3>
+          <p class="muted">Każdy zestaw pokazuje zasadę fizyki, mechanizmu lub obrazu – przez zabawę.</p>
+        </div>
+
+        <div class="card">
+          <h3>Naturalne materiały</h3>
+          <p class="muted">Bez plastiku, bez elektroniki – tylko sklejka, pomysł i wyobraźnia.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- PRODUKTY -->
+    <section id="produkty">
+      <h2 class="section-title">Nasze zestawy</h2>
+      <p class="section-sub">Poznaj pierwsze projekty z serii <strong>DOM</strong> – zestawy inspirowane przedmiotami, które dzieci widzą każdego dnia.</p>
+
+      <div class="products container">
+
+        <div class="product">
+          <img src="flipbook.png" alt="Rotoskop DIY – Wombie Wonder Box">
+          <div class="product-content">
+            <h3>Flipbook</h3>
+            <p>Zrozum, jak z obrazków powstaje film. Zbuduj i zobacz, jak Twoje rysunki ożywają – mały domowy „telewizor”</p>
+            <button class="cta open-modal">Zamów teraz</button>
+          </div>
+        </div>
+
+        <div class="product">
+          <img src="swinka.png" alt="Skarbonka świnka DIY – Wombie Wonder Box">
+          <div class="product-content">
+            <h3>Skarbonka z zamkiem</h3>
+            <p>Zbuduj drewnianą świnkę i odkryj, jak działa mechanizm klucza i zamka</p>
+            <button class="cta open-modal">Zamów teraz</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- NASZ CEL -->
+    <section class="about">
+      <div class="about-content">
+        <h3>Nasz cel</h3>
+        <p>Wombie Wonder Box powstało z pasji do tworzenia i odkrywania. Wierzymy, że nauka nie musi być trudna – wystarczy ją poczuć, zobaczyć i zbudować własnymi rękami.</p>
+        <p>Chcemy, aby dzieci doświadczały świata poprzez działanie, a rodzice mieli okazję towarzyszyć im w tej przygodzie. Każdy nasz zestaw to zaproszenie do wspólnego eksperymentowania, uczenia się i zabawy.</p>
+      </div>
+    </section>
+
+
+    <!-- CTA -->
+    <section>
+      <h2 class="section-title">Zbudujcie coś razem już dziś</h2>
+      <p class="section-sub">Rozwijaj ciekawość i kreatywność swojego dziecka w wyjątkowy sposób.</p>
+      <a href="#produkty" class="cta">Zobacz wszystkie zestawy</a>
+    </section>
+
+  </main>
+
+
+  <footer>
+    <strong>Wombie Wonder Box</strong>
+    © <span id="year"></span> Wszystkie prawa zastrzeżone
+  </footer>
+
+
+
+  <!-- MODAL -->
+  <div id="modal-backdrop">
+    <div id="modal">
+      <h2>Dopiero zaczynamy! ❤️</h2>
+      <p>Jeszcze kończymy produkcję pierwszych zestawów.<br>
+        Zostaw nam maila – damy Ci znać, gdy będą dostępne.
+      </p>
+
+      <form id="notifyForm">
+        <input id="emailInput" type="email" name="email" required placeholder="Twój adres e-mail">
+        <button type="submit" class="cta" style="margin-top:0.5rem;">Powiadom mnie</button>
+      </form>
+
+      <div id="closeModal">Zamknij</div>
+    </div>
+  </div>
+
+
+
+  <!-- SUCCESS MESSAGE -->
+  <div id="success-message">Dziękujemy! Wyślemy powiadomienie, gdy zestawy będą gotowe ❤️</div>
+
+  <!-- HIDDEN ADMIN PANEL -->
+  <div id="hidden-panel">
+    <h4>Statystyki</h4>
+    <div id="hidden-clicks">Kliknięcia: 0</div>
+    <div style="margin-top:.4rem;font-weight:600;">Zapisane maile:</div>
+    <ul id="hidden-emails"></ul>
+  </div>
+
+
+
+  <script>
+    /* Rok w stopce */
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+
+    /* Animacje sekcji */
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('section').forEach(sec => observer.observe(sec));
+
+
+    /* MODAL + licznik kliknięć */
+    const modal = document.getElementById('modal-backdrop');
+    const successMessage = document.getElementById('success-message');
+    const hiddenPanel = document.getElementById('hidden-panel');
+    const hiddenClicks = document.getElementById('hidden-clicks');
+    const hiddenEmails = document.getElementById('hidden-emails');
+
+    let clickCount = Number(localStorage.getItem('zamowCount') || 0);
+    let subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
+
+    function renderHiddenPanel() {
+      hiddenClicks.textContent = "Kliknięcia: " + clickCount;
+
+      hiddenEmails.innerHTML = "";
+      subscribers.forEach(mail => {
+        const li = document.createElement('li');
+        li.textContent = mail;
+        hiddenEmails.appendChild(li);
+      });
+    }
+
+    document.querySelectorAll('.open-modal').forEach(btn => {
+      btn.addEventListener('click', () => {
+        clickCount++;
+        localStorage.setItem('zamowCount', clickCount);
+        modal.style.display = "flex";
+      });
+    });
+
+    document.getElementById('closeModal').onclick = () => modal.style.display = "none";
+
+    modal.onclick = e => {
+      if (e.target === modal) modal.style.display = "none";
+    };
+
+
+    /* Walidacja maila + zapis do localStorage + komunikat */
+    document.getElementById('notifyForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const emailInput = document.getElementById('emailInput');
+      const email = emailInput.value.trim();
+
+      const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+      if (!valid) {
+        alert("Wpisz poprawny adres e-mail 🙂");
+        return;
+      }
+
+      if (!subscribers.includes(email)) {
+        subscribers.push(email);
+        localStorage.setItem('subscribers', JSON.stringify(subscribers));
+      }
+
+      emailInput.value = "";
+
+      successMessage.style.display = "block";
+      setTimeout(() => {
+        successMessage.style.display = "none";
+      }, 4000);
+
+      modal.style.display = "none";
+    });
+
+
+    /* Ukryty panel — CTRL+SHIFT+L */
+    document.addEventListener('keydown', function (e) {
+      if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "l") {
+        renderHiddenPanel();
+        hiddenPanel.style.display = "block";
+
+        setTimeout(() => {
+          hiddenPanel.style.display = "none";
+        }, 6000);
+      }
+    });
+
+  </script>
+
+</body>
+</html>
