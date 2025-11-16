@@ -644,76 +644,92 @@
     <div id="hidden-clicks">Kliknięcia: 0</div>
   </div>
 
-  <script>
-    /* Rok w stopce */
-    document.getElementById('year').textContent = new Date().getFullYear();
+ <script>
+  /* Rok w stopce */
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-    const modalBackdrop   = document.getElementById('modal-backdrop');
-    const successMessage  = document.getElementById('success-message');
-    const hiddenPanel     = document.getElementById('hidden-panel');
-    const hiddenClicks    = document.getElementById('hidden-clicks');
+  const modalBackdrop  = document.getElementById('modal-backdrop');
+  const successMessage = document.getElementById('success-message');
+  const hiddenPanel    = document.getElementById('hidden-panel');
+  const hiddenClicks   = document.getElementById('hidden-clicks');
 
-    /* licznik kliknięć Zamów teraz */
-    let clickCount = Number(localStorage.getItem('zamowCount') || 0);
+  /* Wysyłanie kliknięcia do Formspree */
+  async function sendClickToFormspree(product) {
+    try {
+      await fetch("https://formspree.io/f/xdkywykq", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          event: "product_click",
+          product: product,
+          timestamp: new Date().toISOString()
+        })
+      });
+    } catch (err) {
+      console.error("Formspree error:", err);
+    }
+  }
 
-    document.querySelectorAll('.open-modal').forEach(btn => {
-  const handler = () => {
-    clickCount++;
-    localStorage.setItem('zamowCount', clickCount);
-    modalBackdrop.style.display = "flex";
+  /* Obsługa kliknięcia „Zamów teraz” */
+  document.querySelectorAll('.open-modal').forEach(btn => {
+    const product = btn.closest('.product')?.querySelector('h3')?.textContent || "unknown";
+
+    const handler = (e) => {
+      e.preventDefault();
+      modalBackdrop.style.display = "flex";
+      sendClickToFormspree(product);  // wysyłka do Formspree
+    };
+
+    btn.addEventListener('pointerup', handler);
+  });
+
+  document.getElementById('closeModal').onclick = () => {
+    modalBackdrop.style.display = "none";
   };
 
-  btn.addEventListener('click', handler);
-  btn.addEventListener('touchstart', handler, { passive: true });
-});
+  modalBackdrop.onclick = e => {
+    if (e.target === modalBackdrop) modalBackdrop.style.display = "none";
+  };
 
+  /* Wysyłka maila – tak jak było, bez zmian */
+  document.getElementById('notifyForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const form = e.target;
+    const email = document.getElementById('emailInput').value.trim();
 
-    document.getElementById('closeModal').onclick = () => {
+    const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (!valid) {
+      alert("Wpisz poprawny adres e-mail 🙂");
+      return;
+    }
+
+    fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(() => {
+      document.getElementById('emailInput').value = "";
       modalBackdrop.style.display = "none";
-    };
-
-    modalBackdrop.onclick = e => {
-      if (e.target === modalBackdrop) modalBackdrop.style.display = "none";
-    };
-
-    /* Wysyłka do Formspree – bez zapisywania maili lokalnie */
-    document.getElementById('notifyForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const form = e.target;
-      const email = document.getElementById('emailInput').value.trim();
-
-      const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-      if (!valid) {
-        alert("Wpisz poprawny adres e-mail 🙂");
-        return;
-      }
-
-      fetch(form.action, {
-        method: "POST",
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
-      }).then(() => {
-        document.getElementById('emailInput').value = "";
-        modalBackdrop.style.display = "none";
-        successMessage.style.display = "block";
-        setTimeout(() => successMessage.style.display = "none", 4000);
-      }).catch(() => {
-        alert("Wystąpił błąd. Spróbuj ponownie.");
-      });
+      successMessage.style.display = "block";
+      setTimeout(() => successMessage.style.display = "none", 4000);
+    }).catch(() => {
+      alert("Wystąpił błąd. Spróbuj ponownie.");
     });
+  });
 
-    /* Ukryty panel – tylko licznik kliknięć, bez maili
-       CTRL+SHIFT+L */
-    document.addEventListener('keydown', function (e) {
-      if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "l") {
-        hiddenClicks.textContent = "Kliknięcia: " + clickCount;
-        hiddenPanel.style.display = "block";
-        setTimeout(() => {
-          hiddenPanel.style.display = "none";
-        }, 4000);
-      }
-    });
-  </script>
+  /* Ukryty panel – tylko placeholder,
+     kliknięcia już nie istnieją, ale zostawiam UI tak jak chciałeś */
+  document.addEventListener('keydown', function (e) {
+    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "l") {
+      hiddenClicks.textContent = "Kliknięcia: 0";
+      hiddenPanel.style.display = "block";
+      setTimeout(() => {
+        hiddenPanel.style.display = "none";
+      }, 4000);
+    }
+  });
+</script>
+
 
 </body>
 </html>
