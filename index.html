@@ -13,12 +13,9 @@
       --card-bg: #f8f3ea;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      margin: 0;
       font-family: "Inter", system-ui, sans-serif;
       background: var(--bg);
       color: var(--dark);
@@ -27,16 +24,14 @@
       scroll-behavior: smooth;
     }
 
-    main {
-      overflow-x: hidden;
-    }
+    main { overflow-x: hidden; }
 
+    /* Ultra-light section animation */
     section {
-      padding: 2.5rem 1.25rem;
+      padding: 2.4rem 1.25rem;
       opacity: 0;
-      transform: translateY(18px);
-      transition: opacity .6s ease, transform .6s ease;
-      will-change: opacity, transform;
+      transform: translateY(14px);
+      transition: opacity .35s ease-out, transform .35s ease-out;
     }
 
     section.visible {
@@ -45,105 +40,39 @@
     }
 
     @media (min-width: 768px) {
-      section {
-        padding: 4rem 1.5rem;
-      }
+      section { padding: 4rem 1.5rem; }
     }
 
-    .container {
-      width: min(1120px, 100%);
-      margin: 0 auto;
-    }
-
-    /* TYPOGRAFIA – mobile-first */
-
-    h1 {
-      font-size: 2.1rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin: 0 0 .75rem;
-    }
+    /* Typography */
+    h1 { font-size: 2.2rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: .7rem; }
+    h2 { font-size: 1.65rem; font-weight: 700; margin-bottom: .5rem; }
+    h3 { font-size: 1.28rem; font-weight: 600; }
 
     @media (min-width: 768px) {
-      h1 {
-        font-size: 2.8rem;
-      }
+      h1 { font-size: 3rem; }
+      h2 { font-size: 2rem; }
+      h3 { font-size: 1.4rem; }
     }
 
-    h2 {
-      font-size: 1.6rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin: 0 0 .5rem;
-    }
-
-    @media (min-width: 768px) {
-      h2 {
-        font-size: 2rem;
-      }
-    }
-
-    h3 {
-      font-size: 1.25rem;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      margin-top: 0;
-    }
-
-    p,
-    li,
-    .muted {
-      font-size: 1rem;
-      line-height: 1.65;
-      margin: 0 0 1.1rem;
-    }
-
-    @media (min-width: 768px) {
-      p,
-      li,
-      .muted {
-        font-size: 1.05rem;
-      }
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 0.8rem;
-    }
-
+    .section-title { text-align: center; }
     .section-sub {
       text-align: center;
       max-width: 720px;
-      margin: 0 auto 2rem;
-      font-size: 1.02rem;
+      margin: 0.5rem auto 2rem;
       opacity: .85;
+      font-size: 1.05rem;
     }
 
-    @media (min-width: 768px) {
-      .section-sub {
-        font-size: 1.1rem;
-      }
-    }
+    .container { width: min(1120px, 100%); margin: 0 auto; }
 
-    /* HERO – mobile-first */
-
+    /* HERO */
     .hero {
       background: linear-gradient(180deg, #faf9f8 0%, #f3f0eb 100%);
       text-align: center;
-      padding-top: 2.8rem;
-      padding-bottom: 3.4rem;
+      padding-top: 3.2rem;
+      padding-bottom: 3.6rem;
       opacity: 1 !important;
       transform: none !important;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    @media (min-width: 768px) {
-      .hero {
-        padding-top: 4rem;
-        padding-bottom: 4.6rem;
-      }
     }
 
     .hero img {
@@ -151,13 +80,12 @@
       max-width: 360px;
       height: auto;
       margin-bottom: 1rem;
-      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.08));
     }
 
-    .hero p {
-      max-width: 640px;
-      margin-left: auto;
-      margin-right: auto;
+    @media (min-width: 768px) {
+      .hero { padding: 4rem 1rem 5rem; }
+      .hero img { max-width: 460px; }
     }
 
     .cta {
@@ -167,106 +95,53 @@
       border-radius: .9rem;
       text-decoration: none;
       font-weight: 600;
-      transition: background .25s, transform .15s;
+      cursor: pointer;
       display: inline-block;
       margin-top: 1.1rem;
-      cursor: pointer;
-      font-size: .98rem;
+      transition: background .25s, transform .15s;
     }
+    .cta:hover { background: #aac7da; transform: translateY(-1px); }
+    .cta:active { transform: translateY(0); }
 
-    @media (min-width: 768px) {
-      .cta {
-        font-size: 1rem;
-        padding: .9rem 1.8rem;
-      }
-    }
-
-    .cta:hover {
-      background: #aac7da;
-      transform: translateY(-1px);
-    }
-
-    .cta:active {
-      transform: translateY(0);
-    }
-
-    /* CO TO JEST – mobile-first */
-
+    /* CO TO JEST */
     .features {
       display: flex;
       flex-direction: column;
       gap: 1.1rem;
       max-width: 680px;
       margin: 1.8rem auto 0;
-      font-size: 1.02rem;
     }
 
     .feature {
       background: #fff;
       border-radius: .9rem;
-      padding: 1.4rem 1.2rem;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+      padding: 1.3rem 1.2rem;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      gap: .7rem;
-    }
-
-    .feature span {
-      font-size: 2rem;
-      display: block;
-    }
-
-    .feature div {
-      max-width: 480px;
-    }
-
-    .feature strong {
-      display: block;
-      font-weight: 600;
-      margin-bottom: .1rem;
+      gap: .6rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
 
     @media (min-width: 768px) {
-      .feature {
-        padding: 1.6rem 1.6rem;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.04);
-      }
+      .feature { padding: 1.6rem 1.6rem; box-shadow: 0 6px 18px rgba(0,0,0,0.04); }
     }
 
-    @media (max-width: 480px) {
-      .feature {
-        padding: 1.3rem 1rem;
-      }
+    .feature span { font-size: 2rem; }
+    .feature div { max-width: 480px; }
 
-      .feature span {
-        font-size: 1.7rem;
-      }
-    }
-
-    /* JAK TO DZIAŁA – mobile-first */
-
-    #jak-to-dziala {
-      padding-top: 2.2rem;
-    }
-
-    @media (min-width: 768px) {
-      #jak-to-dziala {
-        padding-top: 3rem;
-      }
-    }
-
+    /* JAK TO DZIAŁA */
     .columns-3 {
       display: grid;
       grid-template-columns: 1fr;
       gap: 1.3rem;
-      margin-top: 1.8rem;
+      margin-top: 2rem;
     }
 
     @media (min-width: 720px) {
       .columns-3 {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(3, 1fr);
         gap: 1.5rem;
       }
     }
@@ -274,29 +149,19 @@
     .card {
       background: #fff;
       border-radius: 1rem;
-      padding: 1.5rem 1.2rem;
-      border: 1px solid rgba(0,0,0,0.03);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+      padding: 1.45rem 1.1rem;
       text-align: center;
-      transition: transform .2s ease, box-shadow .2s ease;
+      border: 1px solid rgba(0,0,0,0.04);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
 
     @media (min-width: 768px) {
-      .card {
-        padding: 1.8rem 1.3rem;
-      }
-
-      .card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 12px 26px rgba(0,0,0,0.06);
-      }
+      .card { padding: 1.8rem 1.2rem; box-shadow: 0 8px 24px rgba(0,0,0,0.05); }
+      .card:hover { transform: translateY(-3px); }
     }
 
-    /* PRODUKTY – mobile-first */
-
-    #produkty {
-      background: var(--card-bg);
-    }
+    /* PRODUKTY */
+    #produkty { background: var(--card-bg); }
 
     .products {
       display: grid;
@@ -307,113 +172,71 @@
 
     @media (min-width: 768px) {
       .products {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(2, 1fr);
         gap: 2rem;
-        margin-top: 2.5rem;
       }
     }
 
     .product {
       background: #fff;
       border-radius: 1.2rem;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      text-align: center;
-      transition: transform .2s ease, box-shadow .2s ease;
       padding-bottom: 2rem;
     }
 
     @media (min-width: 768px) {
-      .product:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 14px 30px rgba(0,0,0,0.06);
-      }
+      .product { box-shadow: 0 8px 24px rgba(0,0,0,0.05); }
+      .product:hover { transform: translateY(-4px); }
     }
 
     .product img {
       width: 100%;
       height: auto;
-      object-fit: contain;
       background: #f1efec;
-      padding: 1.5rem;
+      padding: 1.4rem;
       max-height: 260px;
+      object-fit: contain;
     }
 
     .product-content {
       padding: 2rem 2rem 2.4rem;
     }
 
-    .product-content p {
-      margin-bottom: 1.8rem;
-      font-size: 1.02rem;
-      line-height: 1.6;
-    }
-
-    /* NASZ CEL – mobile-first */
-
+    /* NASZ CEL */
     .about {
       background: linear-gradient(180deg, #f5f3ef 0%, #f0ede8 100%);
       text-align: center;
-      padding-top: 2.8rem;
-      padding-bottom: 3rem;
-    }
-
-    @media (min-width: 768px) {
-      .about {
-        padding-top: 3.2rem;
-        padding-bottom: 3.4rem;
-      }
+      padding: 3rem 1.5rem;
     }
 
     .about-content {
       max-width: 860px;
       margin: 0 auto;
-      font-size: 1.05rem;
+      font-size: 1.06rem;
       line-height: 1.75;
     }
 
     @media (min-width: 768px) {
-      .about-content {
-        font-size: 1.15rem;
-      }
+      .about-content { font-size: 1.15rem; }
     }
 
     .about-content h3 {
-      font-size: 1.6rem;
+      font-size: 1.7rem;
       margin-bottom: 1rem;
       font-weight: 700;
     }
 
     @media (min-width: 768px) {
-      .about-content h3 {
-        font-size: 2rem;
-      }
+      .about-content h3 { font-size: 2rem; }
     }
-
-    /* KOŃCOWE CTA */
-
-    section:last-of-type {
-      text-align: center;
-      padding-top: 2.8rem;
-      padding-bottom: 3.2rem;
-    }
-
-    @media (min-width: 768px) {
-      section:last-of-type {
-        padding-top: 3rem;
-        padding-bottom: 3.6rem;
-      }
-    }
-
-    /* STOPKA */
 
     footer {
       background: #fff;
-      color: var(--dark);
-      padding: 2.5rem 1.5rem;
       text-align: center;
+      padding: 2.5rem 1.2rem;
       font-size: .9rem;
       border-top: 1px solid rgba(0,0,0,0.05);
     }
@@ -423,17 +246,16 @@
       margin-bottom: .4rem;
     }
 
-    /* MODAL – mobile-first */
-
+    /* MODAL */
     #modal-backdrop {
       display: none;
       position: fixed;
       inset: 0;
       background: rgba(0,0,0,0.45);
       backdrop-filter: blur(3px);
+      z-index: 999;
       align-items: center;
       justify-content: center;
-      z-index: 999;
     }
 
     #modal {
@@ -443,13 +265,6 @@
       width: 92%;
       max-width: 420px;
       text-align: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    }
-
-    @media (min-width: 480px) {
-      #modal {
-        width: 90%;
-      }
     }
 
     #modal input {
@@ -469,7 +284,6 @@
     }
 
     /* SUCCESS MESSAGE */
-
     #success-message {
       display: none;
       position: fixed;
@@ -480,22 +294,13 @@
       padding: .9rem 1.2rem;
       border-radius: .8rem;
       font-weight: 600;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
       z-index: 9999;
       font-size: .9rem;
       max-width: 260px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
     }
 
-    @media (min-width: 768px) {
-      #success-message {
-        bottom: 20px;
-        right: 20px;
-        max-width: 320px;
-      }
-    }
-
-    /* HIDDEN ADMIN PANEL */
-
+    /* HIDDEN PANEL */
     #hidden-panel {
       display: none;
       position: fixed;
@@ -507,269 +312,202 @@
       border-radius: .7rem;
       font-size: .85rem;
       z-index: 9999;
-      max-width: 320px;
       max-height: 260px;
       overflow: auto;
-    }
-
-    #hidden-panel h4 {
-      margin: 0 0 .4rem;
-      font-size: .9rem;
-      font-weight: 600;
-    }
-
-    #hidden-panel ul {
-      margin: 0;
-      padding-left: 1rem;
+      max-width: 300px;
     }
   </style>
 </head>
 <body>
 
-  <main>
+<main>
 
-    <!-- HERO -->
-    <section class="hero">
-      <img src="logo2.png" alt="Wombie Wonder Box logo">
-      <h1>Małe zestawy do wielkiej ciekawości</h1>
-      <p>Buduj, odkrywaj i ucz się razem z dzieckiem dzięki zestawom DIY. Budowanie umiejętności przez działanie i wspólną zabawę.</p>
-      <a href="#produkty" class="cta">Zobacz zestawy</a>
-    </section>
+  <!-- HERO -->
+  <section class="hero">
+    <img src="logo2.png" loading="lazy" alt="Wombie Wonder Box logo">
+    <h1>Małe zestawy do wielkiej ciekawości</h1>
+    <p>Buduj, odkrywaj i ucz się razem z dzieckiem dzięki zestawom DIY.</p>
+    <a href="#produkty" class="cta">Zobacz zestawy</a>
+  </section>
 
-    <!-- CO TO JEST -->
-    <section>
-      <h2 class="section-title">Co to jest Wombie Wonder Box?</h2>
-      <p class="section-sub">
-        Edukacyjne zestawy do samodzielnego składania, które pokazują dzieciom,
-        <strong>jak działa świat</strong> – prosto, zrozumiale i własnymi rękami.
-      </p>
+  <!-- CO TO JEST -->
+  <section>
+    <h2 class="section-title">Co to jest Wombie Wonder Box?</h2>
+    <p class="section-sub">
+      Edukacyjne zestawy do samodzielnego składania, które pokazują dzieciom,
+      <strong>jak działa świat</strong>.
+    </p>
 
-      <div class="features">
-        <div class="feature">
-          <span>📦</span>
-          <div>
-            <strong>Kilkanaście elementów</strong>
-            prostych w montażu – składanie bez kleju
-          </div>
-        </div>
-        <div class="feature">
-          <span>📖</span>
-          <div>
-            <strong>Książeczka tematyczna</strong>
-            z ciekawostkami i prostymi wyjaśnieniami zasad działania
-          </div>
-        </div>
-        <div class="feature">
-          <span>🛠️</span>
-          <div>
-            <strong>Instrukcja krok po kroku</strong>
-            z obrazkami, dzięki której każdy poradzi sobie ze złożeniem.
-          </div>
-        </div>
-      </div>
-
-      <p class="section-sub" style="margin-top:2rem;">
-        <strong>Seria DOM</strong> – nasze aktualne zestawy inspirowane są codziennymi przedmiotami.
-        Chcemy, żeby dzieci odkrywały, jak działają rzeczy, które widzą na co dzień – jak zamek w skarbonce 🐷
-        czy film w starym „telewizorze” 🎞️.
-      </p>
-    </section>
-
-    <!-- JAK TO DZIAŁA -->
-    <section id="jak-to-dziala">
-      <h2 class="section-title">Jak to działa</h2>
-
-      <div class="columns-3 container">
-        <div class="card">
-          <h3>Dotyk i doświadczenie</h3>
-          <p class="muted">Dziecko samo buduje i widzi rezultat – dzięki temu naprawdę rozumie, jak coś działa.</p>
-        </div>
-
-        <div class="card">
-          <h3>Prosta nauka</h3>
-          <p class="muted">Każdy zestaw pokazuje zasadę fizyki, mechanizmu lub obrazu – przez zabawę.</p>
-        </div>
-
-        <div class="card">
-          <h3>Naturalne materiały</h3>
-          <p class="muted">Bez plastiku, bez elektroniki – tylko sklejka, pomysł i wyobraźnia.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- PRODUKTY -->
-    <section id="produkty">
-      <h2 class="section-title">Nasze zestawy</h2>
-      <p class="section-sub">Poznaj pierwsze projekty z serii <strong>DOM</strong> – zestawy inspirowane przedmiotami, które dzieci widzą każdego dnia.</p>
-
-      <div class="products container">
-
-        <div class="product">
-          <img src="flipbook.png" alt="Flipbook DIY – Wombie Wonder Box">
-          <div class="product-content">
-            <h3>Flipbook</h3>
-            <p>Zrozum, jak z obrazków powstaje film. Zbuduj i zobacz, jak Twoje rysunki ożywają – mały domowy „telewizor”.</p>
-            <button class="cta open-modal">Zamów teraz</button>
-          </div>
-        </div>
-
-        <div class="product">
-          <img src="swinka.png" alt="Skarbonka świnka DIY – Wombie Wonder Box">
-          <div class="product-content">
-            <h3>Skarbonka z zamkiem</h3>
-            <p>Zbuduj drewnianą świnkę i odkryj, jak działa mechanizm klucza i zamka.</p>
-            <button class="cta open-modal">Zamów teraz</button>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- NASZ CEL -->
-    <section class="about">
-      <div class="about-content">
-        <h3>Nasz cel</h3>
-        <p>Wombie Wonder Box powstało z pasji do tworzenia i odkrywania. Wierzymy, że nauka nie musi być trudna – wystarczy ją poczuć, zobaczyć i zbudować własnymi rękami.</p>
-        <p>Chcemy, aby dzieci doświadczały świata poprzez działanie, a rodzice mieli okazję towarzyszyć im w tej przygodzie. Każdy nasz zestaw to zaproszenie do wspólnego eksperymentowania, uczenia się i zabawy.</p>
-      </div>
-    </section>
-
-    <!-- CTA KOŃCOWE -->
-    <section>
-      <h2 class="section-title">Zbudujcie coś razem już dziś</h2>
-      <p class="section-sub">Rozwijaj ciekawość i kreatywność swojego dziecka w wyjątkowy sposób.</p>
-      <a href="#produkty" class="cta">Zobacz wszystkie zestawy</a>
-    </section>
-
-  </main>
-
-  <footer>
-    <strong>Wombie Wonder Box</strong>
-    © <span id="year"></span> Wszystkie prawa zastrzeżone
-  </footer>
-
-  <!-- MODAL -->
-  <div id="modal-backdrop">
-    <div id="modal">
-      <h2>Dopiero zaczynamy! ❤️</h2>
-      <p>Jeszcze kończymy produkcję pierwszych zestawów.<br>
-        Zostaw nam maila – damy Ci znać, gdy będą dostępne.
-      </p>
-
-      <form id="notifyForm">
-        <input id="emailInput" type="email" name="email" required placeholder="Twój adres e-mail">
-        <button type="submit" class="cta" style="margin-top:0.5rem;">Powiadom mnie</button>
-      </form>
-
-      <div id="closeModal">Zamknij</div>
+    <div class="features">
+      <div class="feature"><span>📦</span><div><strong>Kilkanaście elementów</strong> prostych w montażu – składanie bez kleju</div></div>
+      <div class="feature"><span>📖</span><div><strong>Książeczka tematyczna</strong> z ciekawostkami i prostymi wyjaśnieniami</div></div>
+      <div class="feature"><span>🛠️</span><div><strong>Instrukcja krok po kroku</strong> z obrazkami i jasnym opisem</div></div>
     </div>
+  </section>
+
+  <!-- JAK TO DZIAŁA -->
+  <section id="jak-to-dziala">
+    <h2 class="section-title">Jak to działa</h2>
+
+    <div class="columns-3 container">
+      <div class="card"><h3>Dotyk i doświadczenie</h3><p>Dziecko buduje i widzi efekt.</p></div>
+      <div class="card"><h3>Prosta nauka</h3><p>Zasada mechanizmu przez zabawę.</p></div>
+      <div class="card"><h3>Naturalne materiały</h3><p>Tylko sklejka i wyobraźnia.</p></div>
+    </div>
+  </section>
+
+  <!-- PRODUKTY -->
+  <section id="produkty">
+    <h2 class="section-title">Nasze zestawy</h2>
+    <p class="section-sub"><strong>Seria DOM</strong> – zestawy inspirowane codziennymi przedmiotami.</p>
+
+    <div class="products container">
+
+      <div class="product">
+        <img src="flipbook.png" loading="lazy" alt="Flipbook DIY">
+        <div class="product-content">
+          <h3>Flipbook</h3>
+          <p>Zrozum, jak z obrazków powstaje film.</p>
+          <button class="cta open-modal">Zamów teraz</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <img src="swinka.png" loading="lazy" alt="Skarbonka DIY">
+        <div class="product-content">
+          <h3>Skarbonka z zamkiem</h3>
+          <p>Poznaj, jak działa mechanizm klucza i zamka.</p>
+          <button class="cta open-modal">Zamów teraz</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- NASZ CEL -->
+  <section class="about">
+    <div class="about-content">
+      <h3>Nasz cel</h3>
+      <p>Wierzymy, że nauka jest prosta, jeśli można jej dotknąć i ją zbudować.</p>
+      <p>Każdy zestaw to zaproszenie do wspólnego eksperymentowania i zabawy.</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <h2 class="section-title">Zbudujcie coś razem już dziś</h2>
+    <p class="section-sub">Rozwijaj ciekawość i kreatywność dziecka.</p>
+    <a href="#produkty" class="cta">Zobacz wszystkie zestawy</a>
+  </section>
+
+</main>
+
+<footer>
+  <strong>Wombie Wonder Box</strong>
+  © <span id="year"></span> Wszystkie prawa zastrzeżone
+</footer>
+
+<!-- MODAL -->
+<div id="modal-backdrop">
+  <div id="modal">
+    <h2>Dopiero zaczynamy! ❤️</h2>
+    <p>Zostaw maila — powiadomimy Cię, gdy zestawy będą dostępne.</p>
+
+    <form id="notifyForm">
+      <input id="emailInput" type="email" required placeholder="Twój adres e-mail">
+      <button type="submit" class="cta" style="margin-top:0.5rem;">Powiadom mnie</button>
+    </form>
+
+    <div id="closeModal">Zamknij</div>
   </div>
+</div>
 
-  <!-- SUCCESS MESSAGE -->
-  <div id="success-message">Dziękujemy! Wyślemy powiadomienie, gdy zestawy będą gotowe ❤️</div>
+<div id="success-message">Dziękujemy! Odezwę się, gdy zestawy będą gotowe ❤️</div>
 
-  <!-- HIDDEN ADMIN PANEL -->
-  <div id="hidden-panel">
-    <h4>Statystyki</h4>
-    <div id="hidden-clicks">Kliknięcia: 0</div>
-    <div style="margin-top:.4rem;font-weight:600;">Zapisane maile:</div>
-    <ul id="hidden-emails"></ul>
-  </div>
+<div id="hidden-panel">
+  <h4>Statystyki</h4>
+  <div id="hidden-clicks"></div>
+  <div style="font-weight:600;margin-top:.4rem;">Zapisane maile:</div>
+  <ul id="hidden-emails"></ul>
+</div>
 
-  <script>
-    /* Rok w stopce */
-    document.getElementById('year').textContent = new Date().getFullYear();
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-    /* Animacje sekcji – lekkie, mobile-first */
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
+  /* Ultra-light observer */
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
 
-    document.querySelectorAll('section').forEach(sec => observer.observe(sec));
+  document.querySelectorAll("section").forEach(sec => obs.observe(sec));
 
-    /* MODAL + licznik kliknięć */
-    const modalBackdrop = document.getElementById('modal-backdrop');
-    const successMessage = document.getElementById('success-message');
-    const hiddenPanel = document.getElementById('hidden-panel');
-    const hiddenClicks = document.getElementById('hidden-clicks');
-    const hiddenEmails = document.getElementById('hidden-emails');
+  /* Modal + click tracking */
+  const modalBackdrop = document.getElementById('modal-backdrop');
+  const successMessage = document.getElementById('success-message');
+  const hiddenPanel = document.getElementById('hidden-panel');
+  const hiddenClicks = document.getElementById('hidden-clicks');
+  const hiddenEmails = document.getElementById('hidden-emails');
 
-    let clickCount = Number(localStorage.getItem('zamowCount') || 0);
-    let subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
+  let clickCount = Number(localStorage.getItem('zamowCount') || 0);
+  let subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
 
-    function renderHiddenPanel() {
+  document.querySelectorAll('.open-modal').forEach(btn => {
+    btn.addEventListener('click', () => {
+      clickCount++;
+      localStorage.setItem('zamowCount', clickCount);
+      modalBackdrop.style.display = "flex";
+    });
+  });
+
+  document.getElementById('closeModal').onclick = () => modalBackdrop.style.display = "none";
+  modalBackdrop.onclick = e => { if (e.target === modalBackdrop) modalBackdrop.style.display = "none"; };
+
+  document.getElementById('notifyForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const emailInput = document.getElementById('emailInput');
+    const email = emailInput.value.trim();
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      alert("Wpisz poprawny adres e-mail 🙂");
+      return;
+    }
+
+    if (!subscribers.includes(email)) {
+      subscribers.push(email);
+      localStorage.setItem('subscribers', JSON.stringify(subscribers));
+    }
+
+    emailInput.value = "";
+
+    successMessage.style.display = "block";
+    setTimeout(() => { successMessage.style.display = "none"; }, 4000);
+
+    modalBackdrop.style.display = "none";
+  });
+
+  /* Hidden admin panel — CTRL + SHIFT + L */
+  document.addEventListener('keydown', function (e) {
+    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "l") {
       hiddenClicks.textContent = "Kliknięcia: " + clickCount;
+
       hiddenEmails.innerHTML = "";
       subscribers.forEach(mail => {
         const li = document.createElement('li');
         li.textContent = mail;
         hiddenEmails.appendChild(li);
       });
+
+      hiddenPanel.style.display = "block";
+      setTimeout(() => hiddenPanel.style.display = "none", 6000);
     }
-
-    document.querySelectorAll('.open-modal').forEach(btn => {
-      btn.addEventListener('click', () => {
-        clickCount++;
-        localStorage.setItem('zamowCount', clickCount);
-        modalBackdrop.style.display = "flex";
-      });
-    });
-
-    document.getElementById('closeModal').onclick = () => {
-      modalBackdrop.style.display = "none";
-    };
-
-    modalBackdrop.onclick = e => {
-      if (e.target === modalBackdrop) {
-        modalBackdrop.style.display = "none";
-      }
-    };
-
-    /* Walidacja maila + zapis do localStorage + komunikat */
-    document.getElementById('notifyForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      const emailInput = document.getElementById('emailInput');
-      const email = emailInput.value.trim();
-
-      const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-
-      if (!valid) {
-        alert("Wpisz poprawny adres e-mail 🙂");
-        return;
-      }
-
-      if (!subscribers.includes(email)) {
-        subscribers.push(email);
-        localStorage.setItem('subscribers', JSON.stringify(subscribers));
-      }
-
-      emailInput.value = "";
-
-      successMessage.style.display = "block";
-      setTimeout(() => {
-        successMessage.style.display = "none";
-      }, 4000);
-
-      modalBackdrop.style.display = "none";
-    });
-
-    /* Ukryty panel — CTRL+SHIFT+L */
-    document.addEventListener('keydown', function (e) {
-      if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "l") {
-        renderHiddenPanel();
-        hiddenPanel.style.display = "block";
-        setTimeout(() => {
-          hiddenPanel.style.display = "none";
-        }, 6000);
-      }
-    });
-  </script>
+  });
+</script>
 
 </body>
 </html>
