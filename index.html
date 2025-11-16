@@ -657,12 +657,16 @@
     let clickCount = Number(localStorage.getItem('zamowCount') || 0);
 
     document.querySelectorAll('.open-modal').forEach(btn => {
-      btn.addEventListener('click', () => {
-        clickCount++;
-        localStorage.setItem('zamowCount', clickCount);
-        modalBackdrop.style.display = "flex";
-      });
-    });
+  const handler = () => {
+    clickCount++;
+    localStorage.setItem('zamowCount', clickCount);
+    modalBackdrop.style.display = "flex";
+  };
+
+  btn.addEventListener('click', handler);
+  btn.addEventListener('touchstart', handler, { passive: true });
+});
+
 
     document.getElementById('closeModal').onclick = () => {
       modalBackdrop.style.display = "none";
