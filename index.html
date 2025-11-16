@@ -24,27 +24,17 @@
       scroll-behavior: smooth;
     }
 
-    main { overflow-x: hidden; }
-
-    /* Ultra-light section animation */
     section {
       padding: 2.4rem 1.25rem;
-      opacity: 0;
-      transform: translateY(14px);
-      transition: opacity .35s ease-out, transform .35s ease-out;
-    }
-
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
+      opacity: 1 !important;
+      transform: none !important;
     }
 
     @media (min-width: 768px) {
       section { padding: 4rem 1.5rem; }
     }
 
-    /* Typography */
-    h1 { font-size: 2.2rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: .7rem; }
+    h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: .7rem; }
     h2 { font-size: 1.65rem; font-weight: 700; margin-bottom: .5rem; }
     h3 { font-size: 1.28rem; font-weight: 600; }
 
@@ -71,8 +61,6 @@
       text-align: center;
       padding-top: 3.2rem;
       padding-bottom: 3.6rem;
-      opacity: 1 !important;
-      transform: none !important;
     }
 
     .hero img {
@@ -98,10 +86,9 @@
       cursor: pointer;
       display: inline-block;
       margin-top: 1.1rem;
-      transition: background .25s, transform .15s;
+      transition: background .25s;
     }
-    .cta:hover { background: #aac7da; transform: translateY(-1px); }
-    .cta:active { transform: translateY(0); }
+    .cta:hover { background: #aac7da; }
 
     /* CO TO JEST */
     .features {
@@ -124,12 +111,7 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
 
-    @media (min-width: 768px) {
-      .feature { padding: 1.6rem 1.6rem; box-shadow: 0 6px 18px rgba(0,0,0,0.04); }
-    }
-
     .feature span { font-size: 2rem; }
-    .feature div { max-width: 480px; }
 
     /* JAK TO DZIAŁA */
     .columns-3 {
@@ -140,10 +122,7 @@
     }
 
     @media (min-width: 720px) {
-      .columns-3 {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.5rem;
-      }
+      .columns-3 { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
     }
 
     .card {
@@ -156,8 +135,7 @@
     }
 
     @media (min-width: 768px) {
-      .card { padding: 1.8rem 1.2rem; box-shadow: 0 8px 24px rgba(0,0,0,0.05); }
-      .card:hover { transform: translateY(-3px); }
+      .card { padding: 1.8rem 1.2rem; }
     }
 
     /* PRODUKTY */
@@ -171,10 +149,7 @@
     }
 
     @media (min-width: 768px) {
-      .products {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
-      }
+      .products { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
     }
 
     .product {
@@ -187,11 +162,6 @@
       padding-bottom: 2rem;
     }
 
-    @media (min-width: 768px) {
-      .product { box-shadow: 0 8px 24px rgba(0,0,0,0.05); }
-      .product:hover { transform: translateY(-4px); }
-    }
-
     .product img {
       width: 100%;
       height: auto;
@@ -201,9 +171,7 @@
       object-fit: contain;
     }
 
-    .product-content {
-      padding: 2rem 2rem 2.4rem;
-    }
+    .product-content { padding: 2rem 2rem 2.4rem; }
 
     /* NASZ CEL */
     .about {
@@ -219,20 +187,13 @@
       line-height: 1.75;
     }
 
-    @media (min-width: 768px) {
-      .about-content { font-size: 1.15rem; }
-    }
-
     .about-content h3 {
       font-size: 1.7rem;
       margin-bottom: 1rem;
       font-weight: 700;
     }
 
-    @media (min-width: 768px) {
-      .about-content h3 { font-size: 2rem; }
-    }
-
+    /* STOPKA */
     footer {
       background: #fff;
       text-align: center;
@@ -311,13 +272,13 @@
       padding: 1rem 1.1rem;
       border-radius: .7rem;
       font-size: .85rem;
-      z-index: 9999;
       max-height: 260px;
       overflow: auto;
       max-width: 300px;
     }
   </style>
 </head>
+
 <body>
 
 <main>
@@ -339,20 +300,20 @@
     </p>
 
     <div class="features">
-      <div class="feature"><span>📦</span><div><strong>Kilkanaście elementów</strong> prostych w montażu – składanie bez kleju</div></div>
-      <div class="feature"><span>📖</span><div><strong>Książeczka tematyczna</strong> z ciekawostkami i prostymi wyjaśnieniami</div></div>
-      <div class="feature"><span>🛠️</span><div><strong>Instrukcja krok po kroku</strong> z obrazkami i jasnym opisem</div></div>
+      <div class="feature"><span>📦</span><div><strong>Kilkanaście elementów</strong> prostych w montażu – bez kleju</div></div>
+      <div class="feature"><span>📖</span><div><strong>Książeczka tematyczna</strong> pełna ciekawostek</div></div>
+      <div class="feature"><span>🛠️</span><div><strong>Instrukcja krok po kroku</strong> z obrazkami</div></div>
     </div>
   </section>
 
   <!-- JAK TO DZIAŁA -->
-  <section id="jak-to-dziala">
+  <section>
     <h2 class="section-title">Jak to działa</h2>
 
     <div class="columns-3 container">
-      <div class="card"><h3>Dotyk i doświadczenie</h3><p>Dziecko buduje i widzi efekt.</p></div>
-      <div class="card"><h3>Prosta nauka</h3><p>Zasada mechanizmu przez zabawę.</p></div>
-      <div class="card"><h3>Naturalne materiały</h3><p>Tylko sklejka i wyobraźnia.</p></div>
+      <div class="card"><h3>Dotyk i doświadczenie</h3><p>Dziecko buduje i od razu widzi efekt.</p></div>
+      <div class="card"><h3>Prosta nauka</h3><p>Mechanizmy przedstawione przez zabawę.</p></div>
+      <div class="card"><h3>Naturalne materiały</h3><p>Sklejka zamiast plastiku.</p></div>
     </div>
   </section>
 
@@ -376,7 +337,7 @@
         <img src="swinka.png" loading="lazy" alt="Skarbonka DIY">
         <div class="product-content">
           <h3>Skarbonka z zamkiem</h3>
-          <p>Poznaj, jak działa mechanizm klucza i zamka.</p>
+          <p>Poznaj zasadę działania klucza i zamka.</p>
           <button class="cta open-modal">Zamów teraz</button>
         </div>
       </div>
@@ -388,7 +349,7 @@
   <section class="about">
     <div class="about-content">
       <h3>Nasz cel</h3>
-      <p>Wierzymy, że nauka jest prosta, jeśli można jej dotknąć i ją zbudować.</p>
+      <p>Wierzymy, że nauka jest prosta, jeśli można ją zbudować własnymi rękami.</p>
       <p>Każdy zestaw to zaproszenie do wspólnego eksperymentowania i zabawy.</p>
     </div>
   </section>
@@ -433,18 +394,6 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
-
-  /* Ultra-light observer */
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        obs.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.2 });
-
-  document.querySelectorAll("section").forEach(sec => obs.observe(sec));
 
   /* Modal + click tracking */
   const modalBackdrop = document.getElementById('modal-backdrop');
