@@ -31,102 +31,31 @@
       overflow-x: hidden;
     }
 
-    /* ✨ USUNIĘTA ANIMACJA SEKCJI */
+    /* ANIMACJE — lekkie i płynne */
     section {
-      padding: 2.5rem 1.25rem;
-      opacity: 1 !important;
-      transform: none !important;
-      transition: none !important;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeSection .6s ease forwards;
     }
 
-    @media (min-width: 768px) {
-      section {
-        padding: 4rem 1.5rem;
-      }
+    section:nth-of-type(1) { animation-delay: .1s; }
+    section:nth-of-type(2) { animation-delay: .2s; }
+    section:nth-of-type(3) { animation-delay: .3s; }
+    section:nth-of-type(4) { animation-delay: .4s; }
+    section:nth-of-type(5) { animation-delay: .5s; }
+    section:nth-of-type(6) { animation-delay: .6s; }
+
+    @keyframes fadeSection {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
-    .container {
-      width: min(1120px, 100%);
-      margin: 0 auto;
-    }
-
-    /* TYPOGRAFIA – mobile-first */
-
-    h1 {
-      font-size: 2.1rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin: 0 0 .75rem;
-    }
-
-    @media (min-width: 768px) {
-      h1 {
-        font-size: 2.8rem;
-      }
-    }
-
-    h2 {
-      font-size: 1.6rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin: 0 0 .5rem;
-    }
-
-    @media (min-width: 768px) {
-      h2 {
-        font-size: 2rem;
-      }
-    }
-
-    h3 {
-      font-size: 1.25rem;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      margin-top: 0;
-    }
-
-    p,
-    li,
-    .muted {
-      font-size: 1rem;
-      line-height: 1.65;
-      margin: 0 0 1.1rem;
-    }
-
-    @media (min-width: 768px) {
-      p,
-      li,
-      .muted {
-        font-size: 1.05rem;
-      }
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 0.8rem;
-    }
-
-    .section-sub {
-      text-align: center;
-      max-width: 720px;
-      margin: 0 auto 2rem;
-      font-size: 1.02rem;
-      opacity: .85;
-    }
-
-    @media (min-width: 768px) {
-      .section-sub {
-        font-size: 1.1rem;
-      }
-    }
-
-    /* HERO – mobile-first */
-
+    /* HERO — zmniejszone odstępy, aby CTA było widoczne */
     .hero {
       background: linear-gradient(180deg, #faf9f8 0%, #f3f0eb 100%);
       text-align: center;
-      padding-top: 2.8rem;
-      padding-bottom: 3.4rem;
+      padding-top: 1.9rem;   /* zmniejszone */
+      padding-bottom: 2.4rem; /* zmniejszone */
       opacity: 1 !important;
       transform: none !important;
       display: flex;
@@ -134,18 +63,10 @@
       align-items: center;
     }
 
-    @media (min-width: 768px) {
-      .hero {
-        padding-top: 4rem;
-        padding-bottom: 4.6rem;
-      }
-    }
-
     .hero img {
       width: 80%;
-      max-width: 360px;
-      height: auto;
-      margin-bottom: 1rem;
+      max-width: 340px; /* trochę mniejsze, ale wciąż duże */
+      margin-bottom: .6rem; /* bliżej CTA */
       filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
     }
 
@@ -153,124 +74,76 @@
       max-width: 640px;
       margin-left: auto;
       margin-right: auto;
+      margin-top: .4rem; /* ciaśniej */
+      margin-bottom: .6rem;
     }
+
+    /* TYPOGRAFIA */
+
+    h1 {
+      font-size: 2.1rem;
+      margin: 0 0 .4rem; /* ciaśniej */
+    }
+
+    h2 {
+      font-size: 1.6rem;
+    }
+
+    /* CTA */
 
     .cta {
       background: var(--blue);
       color: var(--dark);
       padding: .85rem 1.6rem;
       border-radius: .9rem;
-      text-decoration: none;
       font-weight: 600;
-      transition: background .25s, transform .15s;
       display: inline-block;
-      margin-top: 1.1rem;
-      cursor: pointer;
-      font-size: .98rem;
+      transition: background .25s, transform .15s;
+      margin-top: .6rem; /* bliżej, wcześniej było 1.1rem */
     }
 
-    @media (min-width: 768px) {
-      .cta {
-        font-size: 1rem;
-        padding: .9rem 1.8rem;
-      }
+    /* CO TO JEST — mobile-first */
+
+    .section-title {
+      text-align: center;
+      margin-bottom: .8rem;
     }
 
-    .cta:hover {
-      background: #aac7da;
-      transform: translateY(-1px);
+    /* NOWA LINIA w tytule "Co to jest" */
+    .section-title span {
+      display: block;
     }
-
-    .cta:active {
-      transform: translateY(0);
-    }
-
-    /* CO TO JEST – mobile-first */
 
     .features {
       display: flex;
       flex-direction: column;
       gap: 1.1rem;
       max-width: 680px;
-      margin: 1.8rem auto 0;
-      font-size: 1.02rem;
+      margin: 1.4rem auto 0;
     }
 
-    .feature {
-      background: #fff;
-      border-radius: .9rem;
-      padding: 1.4rem 1.2rem;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.04);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: .7rem;
+    /* „Seria DOM” bliżej „Jak to działa” */
+    .after-features {
+      margin-top: 1.4rem !important; /* było 2rem */
+      margin-bottom: 1rem !important; /* mocno skrócone */
     }
 
-    .feature span {
-      font-size: 2rem;
-      display: block;
-    }
-
-    .feature div {
-      max-width: 480px;
-    }
-
-    .feature strong {
-      display: block;
-      font-weight: 600;
-      margin-bottom: .1rem;
-    }
-
-    /* JAK TO DZIAŁA – mobile-first */
-
+    /* JAK TO DZIAŁA — sekcja zaczyna się bliżej */
     #jak-to-dziala {
-      padding-top: 2.2rem;
+      padding-top: 1.4rem !important; /* było 2.2–3rem */
     }
 
-    @media (min-width: 768px) {
-      #jak-to-dziala {
-        padding-top: 3rem;
-      }
+    /* NASZ CEL — całość podniesiona */
+    .about {
+      padding-top: 2.0rem !important; /* było 2.8 */
+      padding-bottom: 2.4rem !important;
     }
 
-    .columns-3 {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.3rem;
-      margin-top: 1.8rem;
+    .about-content {
+      margin-top: -0.4rem; /* lekkie podniesienie */
     }
 
-    @media (min-width: 720px) {
-      .columns-3 {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 1.5rem;
-      }
-    }
-
-    .card {
-      background: #fff;
-      border-radius: 1rem;
-      padding: 1.5rem 1.2rem;
-      border: 1px solid rgba(0,0,0,0.03);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.04);
-      text-align: center;
-      transition: transform .2s ease, box-shadow .2s ease;
-    }
-
-    @media (min-width: 768px) {
-      .card {
-        padding: 1.8rem 1.3rem;
-      }
-
-      .card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 12px 26px rgba(0,0,0,0.06);
-      }
-    }
-
-    /* PRODUKTY – mobile-first */
+    /* PRODUKTY i reszta bez zmian */
 
     #produkty {
       background: var(--card-bg);
@@ -283,125 +156,19 @@
       margin-top: 2rem;
     }
 
-    @media (min-width: 768px) {
-      .products {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 2rem;
-        margin-top: 2.5rem;
-      }
-    }
-
-    .product {
-      background: #fff;
-      border-radius: 1.2rem;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.05);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      text-align: center;
-      transition: transform .2s ease, box-shadow .2s ease;
-      padding-bottom: 2rem;
-    }
-
-    @media (min-width: 768px) {
-      .product:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 14px 30px rgba(0,0,0,0.06);
-      }
-    }
-
     .product img {
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-      background: #f1efec;
-      padding: 1.5rem;
-      max-height: 260px;
+      opacity: 0;
+      transform: scale(.97);
+      animation: imgIn .5s ease forwards;
+      animation-delay: .4s;
     }
 
-    .product-content {
-      padding: 2rem 2rem 2.4rem;
+    @keyframes imgIn {
+      from { opacity: 0; transform: scale(.97); }
+      to   { opacity: 1; transform: scale(1); }
     }
 
-    .product-content p {
-      margin-bottom: 1.8rem;
-      font-size: 1.02rem;
-      line-height: 1.6;
-    }
-
-    /* NASZ CEL – mobile-first */
-
-    .about {
-      background: linear-gradient(180deg, #f5f3ef 0%, #f0ede8 100%);
-      text-align: center;
-      padding-top: 2.8rem;
-      padding-bottom: 3rem;
-    }
-
-    @media (min-width: 768px) {
-      .about {
-        padding-top: 3.2rem;
-        padding-bottom: 3.4rem;
-      }
-    }
-
-    .about-content {
-      max-width: 860px;
-      margin: 0 auto;
-      font-size: 1.05rem;
-      line-height: 1.75;
-    }
-
-    @media (min-width: 768px) {
-      .about-content {
-        font-size: 1.15rem;
-      }
-    }
-
-    .about-content h3 {
-      font-size: 1.6rem;
-      margin-bottom: 1rem;
-      font-weight: 700;
-    }
-
-    @media (min-width: 768px) {
-      .about-content h3 {
-        font-size: 2rem;
-      }
-    }
-
-    /* KOŃCOWE CTA */
-
-    section:last-of-type {
-      text-align: center;
-      padding-top: 2.8rem;
-      padding-bottom: 3.2rem;
-    }
-
-    @media (min-width: 768px) {
-      section:last-of-type {
-        padding-top: 3rem;
-        padding-bottom: 3.6rem;
-      }
-    }
-
-    /* STOPKA */
-
-    footer {
-      background: #fff;
-      color: var(--dark);
-      padding: 2.5rem 1.5rem;
-      text-align: center;
-      font-size: .9rem;
-      border-top: 1px solid rgba(0,0,0,0.05);
-    }
-
-    footer strong {
-      display: block;
-      margin-bottom: .4rem;
-    }
-
-    /* MODAL – mobile-first */
+    /* MODAL */
 
     #modal-backdrop {
       display: none;
@@ -421,13 +188,6 @@
       width: 92%;
       max-width: 420px;
       text-align: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    }
-
-    @media (min-width: 480px) {
-      #modal {
-        width: 90%;
-      }
     }
 
     #modal input {
@@ -439,14 +199,7 @@
       font-size: 1rem;
     }
 
-    #closeModal {
-      margin-top: .6rem;
-      cursor: pointer;
-      opacity: .6;
-      font-size: .9rem;
-    }
-
-    /* SUCCESS MESSAGE */
+    /* POWIADOMIENIE */
 
     #success-message {
       display: none;
@@ -458,103 +211,8 @@
       padding: .9rem 1.2rem;
       border-radius: .8rem;
       font-weight: 600;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
       z-index: 9999;
-      font-size: .9rem;
-      max-width: 260px;
     }
-
-    @media (min-width: 768px) {
-      #success-message {
-        bottom: 20px;
-        right: 20px;
-        max-width: 320px;
-      }
-    }
-
-    /* HIDDEN ADMIN PANEL */
-
-    #hidden-panel {
-      display: none;
-      position: fixed;
-      bottom: 16px;
-      left: 16px;
-      background: #333;
-      color: #fff;
-      padding: 1rem 1.1rem;
-      border-radius: .7rem;
-      font-size: .85rem;
-      z-index: 9999;
-      max-width: 320px;
-      max-height: 260px;
-      overflow: auto;
-    }
-
-    #hidden-panel h4 {
-      margin: 0 0 .4rem;
-      font-size: .9rem;
-      font-weight: 600;
-    }
-
-    #hidden-panel ul {
-      margin: 0;
-      padding-left: 1rem;
-    }
-    /* ANIMACJE — lekkie i płynne */
-section {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeSection .6s ease forwards;
-}
-
-/* różne opóźnienia aby było ładnie – kaskadowo */
-section:nth-of-type(1) { animation-delay: .1s; }
-section:nth-of-type(2) { animation-delay: .2s; }
-section:nth-of-type(3) { animation-delay: .3s; }
-section:nth-of-type(4) { animation-delay: .4s; }
-section:nth-of-type(5) { animation-delay: .5s; }
-section:nth-of-type(6) { animation-delay: .6s; }
-
-@keyframes fadeSection {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-
-/* Animacja pojawienia obrazków w produktach */
-.product img {
-  opacity: 0;
-  transform: scale(.97);
-  animation: imgIn .5s ease forwards;
-  animation-delay: .4s;
-}
-
-@keyframes imgIn {
-  from { opacity: 0; transform: scale(.97); }
-  to   { opacity: 1; transform: scale(1); }
-}
-
-
-/* Animacja kart w "Co to jest" i "Jak to działa" */
-.feature, .card {
-  opacity: 0;
-  transform: translateY(12px);
-  animation: softCard .55s ease forwards;
-  animation-delay: .35s;
-}
-
-@keyframes softCard {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-
-/* Delikatniejszy hover */
-.card:hover, .product:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 14px 30px rgba(0,0,0,0.06);
-  transition: .25s ease;
-}
 
   </style>
 </head>
@@ -567,13 +225,16 @@ section:nth-of-type(6) { animation-delay: .6s; }
     <section class="hero">
       <img src="logo2.png" alt="Wombie Wonder Box logo">
       <h1>Małe zestawy do wielkiej ciekawości</h1>
-      <p>Buduj, odkrywaj i ucz się razem z dzieckiem dzięki zestawom DIY. Budowanie umiejętności przez działanie i wspólną zabawę.</p>
+      <p>Buduj, odkrywaj i ucz się razem z dzieckiem dzięki zestawom DIY.</p>
       <a href="#produkty" class="cta">Zobacz zestawy</a>
     </section>
 
     <!-- CO TO JEST -->
     <section>
-      <h2 class="section-title">Co to jest Wombie Wonder Box?</h2>
+      <h2 class="section-title">
+        Co to jest <span>Wombie Wonder Box?</span>
+      </h2>
+
       <p class="section-sub">
         Edukacyjne zestawy do samodzielnego składania, które pokazują dzieciom,
         <strong>jak działa świat</strong> – prosto, zrozumiale i własnymi rękami.
@@ -582,31 +243,20 @@ section:nth-of-type(6) { animation-delay: .6s; }
       <div class="features">
         <div class="feature">
           <span>📦</span>
-          <div>
-            <strong>Kilkanaście elementów</strong>
-            prostych w montażu – składanie bez kleju
-          </div>
+          <div><strong>Kilkanaście elementów</strong> prostych w montażu – składanie bez kleju</div>
         </div>
         <div class="feature">
           <span>📖</span>
-          <div>
-            <strong>Książeczka tematyczna</strong>
-            z ciekawostkami i prostymi wyjaśnieniami zasad działania
-          </div>
+          <div><strong>Książeczka tematyczna</strong> z ciekawostkami i prostymi wyjaśnieniami</div>
         </div>
         <div class="feature">
           <span>🛠️</span>
-          <div>
-            <strong>Instrukcja krok po kroku</strong>
-            z obrazkami, dzięki której każdy poradzi sobie ze złożeniem.
-          </div>
+          <div><strong>Instrukcja krok po kroku</strong> z obrazkami, dzięki której każdy sobie poradzi</div>
         </div>
       </div>
 
-      <p class="section-sub" style="margin-top:2rem;">
-        <strong>Seria DOM</strong> – nasze aktualne zestawy inspirowane są codziennymi przedmiotami.
-        Chcemy, żeby dzieci odkrywały, jak działają rzeczy, które widzą na co dzień – jak zamek w skarbonce 🐷
-        czy film w starym „telewizorze” 🎞️.
+      <p class="section-sub after-features">
+        <strong>Seria DOM</strong> – zestawy inspirowane przedmiotami codziennymi.
       </p>
     </section>
 
@@ -617,17 +267,15 @@ section:nth-of-type(6) { animation-delay: .6s; }
       <div class="columns-3 container">
         <div class="card">
           <h3>Dotyk i doświadczenie</h3>
-          <p class="muted">Dziecko samo buduje i widzi rezultat – dzięki temu naprawdę rozumie, jak coś działa.</p>
+          <p>Dziecko samo buduje i rozumie, jak coś działa.</p>
         </div>
-
         <div class="card">
           <h3>Prosta nauka</h3>
-          <p class="muted">Każdy zestaw pokazuje zasadę fizyki, mechanizmu lub obrazu – przez zabawę.</p>
+          <p>Każdy zestaw pokazuje zasadę działania poprzez zabawę.</p>
         </div>
-
         <div class="card">
           <h3>Naturalne materiały</h3>
-          <p class="muted">Bez plastiku, bez elektroniki – tylko sklejka, pomysł i wyobraźnia.</p>
+          <p>Bez plastiku, bez elektroniki – tylko sklejka i wyobraźnia.</p>
         </div>
       </div>
     </section>
@@ -635,7 +283,6 @@ section:nth-of-type(6) { animation-delay: .6s; }
     <!-- PRODUKTY -->
     <section id="produkty">
       <h2 class="section-title">Nasze zestawy</h2>
-      <p class="section-sub">Poznaj pierwsze projekty z serii <strong>DOM</strong> – zestawy inspirowane przedmiotami, które dzieci widzą każdego dnia.</p>
 
       <div class="products container">
 
@@ -643,7 +290,7 @@ section:nth-of-type(6) { animation-delay: .6s; }
           <img src="flipbook.png" alt="Flipbook DIY – Wombie Wonder Box">
           <div class="product-content">
             <h3>Flipbook</h3>
-            <p>Zrozum, jak z obrazków powstaje film. Zbuduj i zobacz, jak Twoje rysunki ożywają – mały domowy „telewizor”.</p>
+            <p>Zrozum, jak z obrazków powstaje film.</p>
             <button class="cta open-modal">Zamów teraz</button>
           </div>
         </div>
@@ -652,7 +299,7 @@ section:nth-of-type(6) { animation-delay: .6s; }
           <img src="swinka.png" alt="Skarbonka świnka DIY – Wombie Wonder Box">
           <div class="product-content">
             <h3>Skarbonka z zamkiem</h3>
-            <p>Zbuduj drewnianą świnkę i odkryj, jak działa mechanizm klucza i zamka.</p>
+            <p>Zbuduj świnkę i odkryj, jak działa zamek.</p>
             <button class="cta open-modal">Zamów teraz</button>
           </div>
         </div>
@@ -664,15 +311,14 @@ section:nth-of-type(6) { animation-delay: .6s; }
     <section class="about">
       <div class="about-content">
         <h3>Nasz cel</h3>
-        <p>Wombie Wonder Box powstało z pasji do tworzenia i odkrywania. Wierzymy, że nauka nie musi być trudna – wystarczy ją poczuć, zobaczyć i zbudować własnymi rękami.</p>
-        <p>Chcemy, aby dzieci doświadczały świata poprzez działanie, a rodzice mieli okazję towarzyszyć im w tej przygodzie. Każdy nasz zestaw to zaproszenie do wspólnego eksperymentowania, uczenia się i zabawy.</p>
+        <p>Chcemy, aby dzieci odkrywały świat przez działanie i budowanie.</p>
+        <p>Każdy zestaw to zaproszenie do wspólnej nauki i zabawy.</p>
       </div>
     </section>
 
-    <!-- CTA KOŃCOWЕ -->
+    <!-- CTA KOŃCOWE -->
     <section>
       <h2 class="section-title">Zbudujcie coś razem już dziś</h2>
-      <p class="section-sub">Rozwijaj ciekawość i kreatywność swojego dziecka w wyjątkowy sposób.</p>
       <a href="#produkty" class="cta">Zobacz wszystkie zestawy</a>
     </section>
 
@@ -687,57 +333,29 @@ section:nth-of-type(6) { animation-delay: .6s; }
   <div id="modal-backdrop">
     <div id="modal">
       <h2>Dopiero zaczynamy! ❤️</h2>
-      <p>Jeszcze kończymy produkcję pierwszych zestawów.<br>
-        Zostaw nam maila – damy Ci znać, gdy będą dostępne.
-      </p>
+      <p>Zostaw nam maila – damy Ci znać, gdy zestawy będą dostępne.</p>
 
-      <form id="notifyForm">
+      <form id="notifyForm" action="https://formspree.io/f/xdkywykq" method="POST">
         <input id="emailInput" type="email" name="email" required placeholder="Twój adres e-mail">
         <button type="submit" class="cta" style="margin-top:0.5rem;">Powiadom mnie</button>
       </form>
 
-      <div id="closeModal">Zamknij</div>
+      <div id="closeModal" style="margin-top:.6rem; cursor:pointer; opacity:.6; font-size:.9rem;">Zamknij</div>
     </div>
   </div>
 
   <!-- SUCCESS MESSAGE -->
-  <div id="success-message">Dziękujemy! Wyślemy powiadomienie, gdy zestawy będą gotowe ❤️</div>
-
-  <!-- HIDDEN ADMIN PANEL -->
-  <div id="hidden-panel">
-    <h4>Statystyki</h4>
-    <div id="hidden-clicks">Kliknięcia: 0</div>
-    <div style="margin-top:.4rem;font-weight:600;">Zapisane maile:</div>
-    <ul id="hidden-emails"></ul>
-  </div>
+  <div id="success-message">Dziękujemy! Wyślemy powiadomienie ❤️</div>
 
   <script>
     /* Rok w stopce */
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    /* ❌ USUNIĘTO ANIMACJE SEKCJI – usuwamy cały observer
-    document.querySelectorAll('section').forEach(sec => observer.observe(sec));
-    */
-
     /* MODAL + licznik kliknięć */
     const modalBackdrop = document.getElementById('modal-backdrop');
     const successMessage = document.getElementById('success-message');
-    const hiddenPanel = document.getElementById('hidden-panel');
-    const hiddenClicks = document.getElementById('hidden-clicks');
-    const hiddenEmails = document.getElementById('hidden-emails');
 
     let clickCount = Number(localStorage.getItem('zamowCount') || 0);
-    let subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
-
-    function renderHiddenPanel() {
-      hiddenClicks.textContent = "Kliknięcia: " + clickCount;
-      hiddenEmails.innerHTML = "";
-      subscribers.forEach(mail => {
-        const li = document.createElement('li');
-        li.textContent = mail;
-        hiddenEmails.appendChild(li);
-      });
-    }
 
     document.querySelectorAll('.open-modal').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -752,49 +370,26 @@ section:nth-of-type(6) { animation-delay: .6s; }
     };
 
     modalBackdrop.onclick = e => {
-      if (e.target === modalBackdrop) {
-        modalBackdrop.style.display = "none";
-      }
+      if (e.target === modalBackdrop) modalBackdrop.style.display = "none";
     };
 
-    /* Walidacja maila + zapis do localStorage + komunikat */
+    /* Formspree wysyłanie */
     document.getElementById('notifyForm').addEventListener('submit', function (e) {
       e.preventDefault();
+      const form = e.target;
 
-      const emailInput = document.getElementById('emailInput');
-      const email = emailInput.value.trim();
-
-      const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-
-      if (!valid) {
-        alert("Wpisz poprawny adres e-mail 🙂");
-        return;
-      }
-
-      if (!subscribers.includes(email)) {
-        subscribers.push(email);
-        localStorage.setItem('subscribers', JSON.stringify(subscribers));
-      }
-
-      emailInput.value = "";
-
-      successMessage.style.display = "block";
-      setTimeout(() => {
-        successMessage.style.display = "none";
-      }, 4000);
-
-      modalBackdrop.style.display = "none";
-    });
-
-    /* Ukryty panel — CTRL+SHIFT+L */
-    document.addEventListener('keydown', function (e) {
-      if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "l") {
-        renderHiddenPanel();
-        hiddenPanel.style.display = "block";
-        setTimeout(() => {
-          hiddenPanel.style.display = "none";
-        }, 6000);
-      }
+      fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(() => {
+        document.getElementById('emailInput').value = "";
+        modalBackdrop.style.display = "none";
+        successMessage.style.display = "block";
+        setTimeout(() => successMessage.style.display = "none", 4000);
+      }).catch(() => {
+        alert("Wystąpił błąd. Spróbuj ponownie.");
+      });
     });
   </script>
 
