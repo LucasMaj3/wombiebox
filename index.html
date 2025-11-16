@@ -500,6 +500,62 @@
       margin: 0;
       padding-left: 1rem;
     }
+    /* ANIMACJE — lekkie i płynne */
+section {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeSection .6s ease forwards;
+}
+
+/* różne opóźnienia aby było ładnie – kaskadowo */
+section:nth-of-type(1) { animation-delay: .1s; }
+section:nth-of-type(2) { animation-delay: .2s; }
+section:nth-of-type(3) { animation-delay: .3s; }
+section:nth-of-type(4) { animation-delay: .4s; }
+section:nth-of-type(5) { animation-delay: .5s; }
+section:nth-of-type(6) { animation-delay: .6s; }
+
+@keyframes fadeSection {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+
+/* Animacja pojawienia obrazków w produktach */
+.product img {
+  opacity: 0;
+  transform: scale(.97);
+  animation: imgIn .5s ease forwards;
+  animation-delay: .4s;
+}
+
+@keyframes imgIn {
+  from { opacity: 0; transform: scale(.97); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+
+/* Animacja kart w "Co to jest" i "Jak to działa" */
+.feature, .card {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: softCard .55s ease forwards;
+  animation-delay: .35s;
+}
+
+@keyframes softCard {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+
+/* Delikatniejszy hover */
+.card:hover, .product:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.06);
+  transition: .25s ease;
+}
+
   </style>
 </head>
 
