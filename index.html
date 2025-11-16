@@ -31,10 +31,16 @@
       overflow-x: hidden;
     }
 
-    /* ANIMACJE — lekkie i płynne */
+    .container {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+    }
+
+    /* SEKCJE + ANIMACJE (lekkie) */
     section {
+      padding: 2.3rem 1.25rem;
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(18px);
       animation: fadeSection .6s ease forwards;
     }
 
@@ -46,16 +52,83 @@
     section:nth-of-type(6) { animation-delay: .6s; }
 
     @keyframes fadeSection {
-      from { opacity: 0; transform: translateY(20px); }
+      from { opacity: 0; transform: translateY(18px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* HERO — zmniejszone odstępy, aby CTA było widoczne */
+    @media (min-width: 768px) {
+      section {
+        padding: 3.6rem 1.5rem;
+      }
+    }
+
+    /* TYPOGRAFIA */
+    h1 {
+      font-size: 2.1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin: 0 0 .4rem;
+    }
+
+    @media (min-width: 768px) {
+      h1 { font-size: 2.8rem; }
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin: 0 0 .5rem;
+    }
+
+    @media (min-width: 768px) {
+      h2 { font-size: 2rem; }
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-top: 0;
+    }
+
+    p,
+    li,
+    .muted {
+      font-size: 1rem;
+      line-height: 1.65;
+      margin: 0 0 1.1rem;
+    }
+
+    @media (min-width: 768px) {
+      p,
+      li,
+      .muted { font-size: 1.05rem; }
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 0.7rem;
+    }
+
+    .section-sub {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 1.8rem;
+      font-size: 1.02rem;
+      opacity: .85;
+    }
+
+    @media (min-width: 768px) {
+      .section-sub { font-size: 1.1rem; }
+    }
+
+    /* HERO – tak, żeby CTA było w pierwszym ekranie */
     .hero {
       background: linear-gradient(180deg, #faf9f8 0%, #f3f0eb 100%);
       text-align: center;
-      padding-top: 1.9rem;   /* zmniejszone */
-      padding-bottom: 2.4rem; /* zmniejszone */
+      padding-top: 1.8rem;
+      padding-bottom: 2.4rem;
       opacity: 1 !important;
       transform: none !important;
       display: flex;
@@ -63,10 +136,18 @@
       align-items: center;
     }
 
+    @media (min-width: 768px) {
+      .hero {
+        padding-top: 3rem;
+        padding-bottom: 3.4rem;
+      }
+    }
+
     .hero img {
       width: 80%;
-      max-width: 340px; /* trochę mniejsze, ale wciąż duże */
-      margin-bottom: .6rem; /* bliżej CTA */
+      max-width: 360px;
+      height: auto;
+      margin-bottom: .6rem;
       filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
     }
 
@@ -74,42 +155,43 @@
       max-width: 640px;
       margin-left: auto;
       margin-right: auto;
-      margin-top: .4rem; /* ciaśniej */
-      margin-bottom: .6rem;
+      margin-top: .3rem;
+      margin-bottom: .5rem;
     }
-
-    /* TYPOGRAFIA */
-
-    h1 {
-      font-size: 2.1rem;
-      margin: 0 0 .4rem; /* ciaśniej */
-    }
-
-    h2 {
-      font-size: 1.6rem;
-    }
-
-    /* CTA */
 
     .cta {
       background: var(--blue);
       color: var(--dark);
       padding: .85rem 1.6rem;
       border-radius: .9rem;
+      text-decoration: none;
+      border: none;
       font-weight: 600;
-      display: inline-block;
       transition: background .25s, transform .15s;
-      margin-top: .6rem; /* bliżej, wcześniej było 1.1rem */
+      display: inline-block;
+      margin-top: .5rem;
+      cursor: pointer;
+      font-size: .98rem;
     }
 
-    /* CO TO JEST — mobile-first */
-
-    .section-title {
-      text-align: center;
-      margin-bottom: .8rem;
+    @media (min-width: 768px) {
+      .cta {
+        font-size: 1rem;
+        padding: .9rem 1.8rem;
+      }
     }
 
-    /* NOWA LINIA w tytule "Co to jest" */
+    .cta:hover {
+      background: #aac7da;
+      transform: translateY(-1px);
+    }
+
+    .cta:active {
+      transform: translateY(0);
+    }
+
+    /* CO TO JEST */
+
     .section-title span {
       display: block;
     }
@@ -122,28 +204,80 @@
       margin: 1.4rem auto 0;
     }
 
-    /* „Seria DOM” bliżej „Jak to działa” */
+    .feature {
+      background: #fff;
+      border-radius: .9rem;
+      padding: 1.4rem 1.2rem;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: .7rem;
+    }
+
+    .feature span {
+      font-size: 2rem;
+      display: block;
+    }
+
+    .feature div {
+      max-width: 480px;
+    }
+
+    .feature strong {
+      display: block;
+      font-weight: 600;
+      margin-bottom: .1rem;
+    }
+
+    /* Seria DOM – mniejszy odstęp do kolejnej sekcji */
     .after-features {
-      margin-top: 1.4rem !important; /* było 2rem */
-      margin-bottom: 1rem !important; /* mocno skrócone */
+      margin-top: 1.4rem !important;
+      margin-bottom: 1rem !important;
     }
 
-    /* JAK TO DZIAŁA — sekcja zaczyna się bliżej */
+    /* JAK TO DZIAŁA – bliżej Seria DOM */
     #jak-to-dziala {
-      padding-top: 1.4rem !important; /* było 2.2–3rem */
+      padding-top: 1.4rem !important;
     }
 
-    /* NASZ CEL — całość podniesiona */
-    .about {
-      padding-top: 2.0rem !important; /* było 2.8 */
-      padding-bottom: 2.4rem !important;
+    .columns-3 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.3rem;
+      margin-top: 1.5rem;
     }
 
-    .about-content {
-      margin-top: -0.4rem; /* lekkie podniesienie */
+    @media (min-width: 720px) {
+      .columns-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.5rem;
+      }
     }
 
-    /* PRODUKTY i reszta bez zmian */
+    .card {
+      background: #fff;
+      border-radius: 1rem;
+      padding: 1.5rem 1.2rem;
+      border: 1px solid rgba(0,0,0,0.03);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+      text-align: center;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    @media (min-width: 768px) {
+      .card {
+        padding: 1.8rem 1.3rem;
+      }
+
+      .card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 26px rgba(0,0,0,0.06);
+      }
+    }
+
+    /* PROUKTY */
 
     #produkty {
       background: var(--card-bg);
@@ -156,16 +290,124 @@
       margin-top: 2rem;
     }
 
+    @media (min-width: 768px) {
+      .products {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 2rem;
+        margin-top: 2.5rem;
+      }
+    }
+
+    .product {
+      background: #fff;
+      border-radius: 1.2rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      padding-bottom: 2rem;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    @media (min-width: 768px) {
+      .product:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 14px 30px rgba(0,0,0,0.06);
+      }
+    }
+
     .product img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      background: #f1efec;
+      padding: 1.5rem;
+      max-height: 260px;
       opacity: 0;
       transform: scale(.97);
       animation: imgIn .5s ease forwards;
-      animation-delay: .4s;
+      animation-delay: .3s;
     }
 
     @keyframes imgIn {
       from { opacity: 0; transform: scale(.97); }
       to   { opacity: 1; transform: scale(1); }
+    }
+
+    .product-content {
+      padding: 2rem 2rem 2.4rem;
+    }
+
+    .product-content p {
+      margin-bottom: 1.8rem;
+      font-size: 1.02rem;
+      line-height: 1.6;
+    }
+
+    /* NASZ CEL – delikatnie podniesione */
+
+    .about {
+      background: linear-gradient(180deg, #f5f3ef 0%, #f0ede8 100%);
+      text-align: center;
+      padding-top: 2rem;
+      padding-bottom: 2.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .about {
+        padding-top: 2.6rem;
+        padding-bottom: 3rem;
+      }
+    }
+
+    .about-content {
+      max-width: 860px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+      line-height: 1.75;
+    }
+
+    @media (min-width: 768px) {
+      .about-content {
+        font-size: 1.15rem;
+      }
+    }
+
+    .about-content h3 {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    @media (min-width: 768px) {
+      .about-content h3 {
+        font-size: 2rem;
+      }
+    }
+
+    /* KOŃCOWE CTA */
+
+    section:last-of-type {
+      text-align: center;
+      padding-top: 2.4rem;
+      padding-bottom: 3rem;
+    }
+
+    /* STOPKA */
+
+    footer {
+      background: #fff;
+      color: var(--dark);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      font-size: .9rem;
+      border-top: 1px solid rgba(0,0,0,0.05);
+    }
+
+    footer strong {
+      display: block;
+      margin-bottom: .4rem;
     }
 
     /* MODAL */
@@ -188,6 +430,7 @@
       width: 92%;
       max-width: 420px;
       text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
     }
 
     #modal input {
@@ -197,6 +440,13 @@
       border-radius: .7rem;
       border: 1px solid #ccc;
       font-size: 1rem;
+    }
+
+    #closeModal {
+      margin-top: .6rem;
+      cursor: pointer;
+      opacity: .6;
+      font-size: .9rem;
     }
 
     /* POWIADOMIENIE */
@@ -211,9 +461,34 @@
       padding: .9rem 1.2rem;
       border-radius: .8rem;
       font-weight: 600;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
       z-index: 9999;
+      font-size: .9rem;
+      max-width: 260px;
     }
 
+    @media (min-width: 768px) {
+      #success-message {
+        bottom: 20px;
+        right: 20px;
+        max-width: 320px;
+      }
+    }
+
+    /* HIDDEN PANEL – tylko licznik kliknięć */
+
+    #hidden-panel {
+      display: none;
+      position: fixed;
+      bottom: 16px;
+      left: 16px;
+      background: rgba(0,0,0,0.8);
+      color: #fff;
+      padding: .8rem 1rem;
+      border-radius: .7rem;
+      font-size: .85rem;
+      z-index: 9999;
+    }
   </style>
 </head>
 
@@ -225,7 +500,7 @@
     <section class="hero">
       <img src="logo2.png" alt="Wombie Wonder Box logo">
       <h1>Małe zestawy do wielkiej ciekawości</h1>
-      <p>Buduj, odkrywaj i ucz się razem z dzieckiem dzięki zestawom DIY.</p>
+      <p>Buduj, odkrywaj i ucz się razem z dzieckiem dzięki zestawom DIY. Budowanie umiejętności przez działanie i wspólną zabawę.</p>
       <a href="#produkty" class="cta">Zobacz zestawy</a>
     </section>
 
@@ -243,20 +518,31 @@
       <div class="features">
         <div class="feature">
           <span>📦</span>
-          <div><strong>Kilkanaście elementów</strong> prostych w montażu – składanie bez kleju</div>
+          <div>
+            <strong>Kilkanaście elementów</strong>
+            prostych w montażu – składanie bez kleju
+          </div>
         </div>
         <div class="feature">
           <span>📖</span>
-          <div><strong>Książeczka tematyczna</strong> z ciekawostkami i prostymi wyjaśnieniami</div>
+          <div>
+            <strong>Książeczka tematyczna</strong>
+            z ciekawostkami i prostymi wyjaśnieniami zasad działania
+          </div>
         </div>
         <div class="feature">
           <span>🛠️</span>
-          <div><strong>Instrukcja krok po kroku</strong> z obrazkami, dzięki której każdy sobie poradzi</div>
+          <div>
+            <strong>Instrukcja krok po kroku</strong>
+            z obrazkami, dzięki której każdy poradzi sobie ze złożeniem.
+          </div>
         </div>
       </div>
 
       <p class="section-sub after-features">
-        <strong>Seria DOM</strong> – zestawy inspirowane przedmiotami codziennymi.
+        <strong>Seria DOM</strong> – nasze aktualne zestawy inspirowane są codziennymi przedmiotami.
+        Chcemy, żeby dzieci odkrywały, jak działają rzeczy, które widzą na co dzień – jak zamek w skarbonce 🐷
+        czy film w starym „telewizorze” 🎞️.
       </p>
     </section>
 
@@ -267,15 +553,17 @@
       <div class="columns-3 container">
         <div class="card">
           <h3>Dotyk i doświadczenie</h3>
-          <p>Dziecko samo buduje i rozumie, jak coś działa.</p>
+          <p class="muted">Dziecko samo buduje i widzi rezultat – dzięki temu naprawdę rozumie, jak coś działa.</p>
         </div>
+
         <div class="card">
           <h3>Prosta nauka</h3>
-          <p>Każdy zestaw pokazuje zasadę działania poprzez zabawę.</p>
+          <p class="muted">Każdy zestaw pokazuje zasadę fizyki, mechanizmu lub obrazu – przez zabawę.</p>
         </div>
+
         <div class="card">
           <h3>Naturalne materiały</h3>
-          <p>Bez plastiku, bez elektroniki – tylko sklejka i wyobraźnia.</p>
+          <p class="muted">Bez plastiku, bez elektroniki – tylko sklejka, pomysł i wyobraźnia.</p>
         </div>
       </div>
     </section>
@@ -283,6 +571,7 @@
     <!-- PRODUKTY -->
     <section id="produkty">
       <h2 class="section-title">Nasze zestawy</h2>
+      <p class="section-sub">Poznaj pierwsze projekty z serii <strong>DOM</strong> – zestawy inspirowane przedmiotami, które dzieci widzą każdego dnia.</p>
 
       <div class="products container">
 
@@ -290,7 +579,7 @@
           <img src="flipbook.png" alt="Flipbook DIY – Wombie Wonder Box">
           <div class="product-content">
             <h3>Flipbook</h3>
-            <p>Zrozum, jak z obrazków powstaje film.</p>
+            <p>Zrozum, jak z obrazków powstaje film. Zbuduj i zobacz, jak Twoje rysunki ożywają – mały domowy „telewizor”.</p>
             <button class="cta open-modal">Zamów teraz</button>
           </div>
         </div>
@@ -299,7 +588,7 @@
           <img src="swinka.png" alt="Skarbonka świnka DIY – Wombie Wonder Box">
           <div class="product-content">
             <h3>Skarbonka z zamkiem</h3>
-            <p>Zbuduj świnkę i odkryj, jak działa zamek.</p>
+            <p>Zbuduj drewnianą świnkę i odkryj, jak działa mechanizm klucza i zamka.</p>
             <button class="cta open-modal">Zamów teraz</button>
           </div>
         </div>
@@ -311,14 +600,15 @@
     <section class="about">
       <div class="about-content">
         <h3>Nasz cel</h3>
-        <p>Chcemy, aby dzieci odkrywały świat przez działanie i budowanie.</p>
-        <p>Każdy zestaw to zaproszenie do wspólnej nauki i zabawy.</p>
+        <p>Wombie Wonder Box powstało z pasji do tworzenia i odkrywania. Wierzymy, że nauka nie musi być trudna – wystarczy ją poczuć, zobaczyć i zbudować własnymi rękami.</p>
+        <p>Chcemy, aby dzieci doświadczały świata poprzez działanie, a rodzice mieli okazję towarzyszyć im w tej przygodzie. Każdy nasz zestaw to zaproszenie do wspólnego eksperymentowania, uczenia się i zabawy.</p>
       </div>
     </section>
 
     <!-- CTA KOŃCOWE -->
     <section>
       <h2 class="section-title">Zbudujcie coś razem już dziś</h2>
+      <p class="section-sub">Rozwijaj ciekawość i kreatywność swojego dziecka w wyjątkowy sposób.</p>
       <a href="#produkty" class="cta">Zobacz wszystkie zestawy</a>
     </section>
 
@@ -333,28 +623,37 @@
   <div id="modal-backdrop">
     <div id="modal">
       <h2>Dopiero zaczynamy! ❤️</h2>
-      <p>Zostaw nam maila – damy Ci znać, gdy zestawy będą dostępne.</p>
+      <p>Jeszcze kończymy produkcję pierwszych zestawów.<br>
+        Zostaw nam maila – damy Ci znać, gdy będą dostępne.
+      </p>
 
       <form id="notifyForm" action="https://formspree.io/f/xdkywykq" method="POST">
         <input id="emailInput" type="email" name="email" required placeholder="Twój adres e-mail">
         <button type="submit" class="cta" style="margin-top:0.5rem;">Powiadom mnie</button>
       </form>
 
-      <div id="closeModal" style="margin-top:.6rem; cursor:pointer; opacity:.6; font-size:.9rem;">Zamknij</div>
+      <div id="closeModal">Zamknij</div>
     </div>
   </div>
 
   <!-- SUCCESS MESSAGE -->
-  <div id="success-message">Dziękujemy! Wyślemy powiadomienie ❤️</div>
+  <div id="success-message">Dziękujemy! Wyślemy powiadomienie, gdy zestawy będą gotowe ❤️</div>
+
+  <!-- HIDDEN PANEL – tylko licznik kliknięć -->
+  <div id="hidden-panel">
+    <div id="hidden-clicks">Kliknięcia: 0</div>
+  </div>
 
   <script>
     /* Rok w stopce */
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    /* MODAL + licznik kliknięć */
-    const modalBackdrop = document.getElementById('modal-backdrop');
-    const successMessage = document.getElementById('success-message');
+    const modalBackdrop   = document.getElementById('modal-backdrop');
+    const successMessage  = document.getElementById('success-message');
+    const hiddenPanel     = document.getElementById('hidden-panel');
+    const hiddenClicks    = document.getElementById('hidden-clicks');
 
+    /* licznik kliknięć Zamów teraz */
     let clickCount = Number(localStorage.getItem('zamowCount') || 0);
 
     document.querySelectorAll('.open-modal').forEach(btn => {
@@ -373,10 +672,17 @@
       if (e.target === modalBackdrop) modalBackdrop.style.display = "none";
     };
 
-    /* Formspree wysyłanie */
+    /* Wysyłka do Formspree – bez zapisywania maili lokalnie */
     document.getElementById('notifyForm').addEventListener('submit', function (e) {
       e.preventDefault();
       const form = e.target;
+      const email = document.getElementById('emailInput').value.trim();
+
+      const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      if (!valid) {
+        alert("Wpisz poprawny adres e-mail 🙂");
+        return;
+      }
 
       fetch(form.action, {
         method: "POST",
@@ -390,6 +696,18 @@
       }).catch(() => {
         alert("Wystąpił błąd. Spróbuj ponownie.");
       });
+    });
+
+    /* Ukryty panel – tylko licznik kliknięć, bez maili
+       CTRL+SHIFT+L */
+    document.addEventListener('keydown', function (e) {
+      if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "l") {
+        hiddenClicks.textContent = "Kliknięcia: " + clickCount;
+        hiddenPanel.style.display = "block";
+        setTimeout(() => {
+          hiddenPanel.style.display = "none";
+        }, 4000);
+      }
     });
   </script>
 
